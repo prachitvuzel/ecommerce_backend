@@ -6,14 +6,14 @@ dotenv.config()
 
 function generateToken(payload) {
     return jwt.sign({
-        exp: Math.floor(Date.now() / 1000) + (60 * 60),
+        exp: Math.floor(Date.now() / 1000) + (60*60),
         ...payload
     }, process.env.secret_key)
 }
 
 
 function verifyToken(token) {
-    return jwt.verify(token)
+    return jwt.verify(token,process.env.secret_key)
 }
 
 export default {generateToken, verifyToken}

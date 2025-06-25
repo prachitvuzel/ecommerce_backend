@@ -3,7 +3,7 @@ import bcrypt from "bcrypt";
 import auth_service from "../services/auth.js"
 
 
-const userSchema = mongoose.Schema({
+const userSchema = new mongoose.Schema({
     firstName: {
         type: String,
         required:true,
@@ -79,5 +79,13 @@ userSchema.pre("save", async function (next) {
 })
 
 const User = mongoose.model("user", userSchema)
+
+
+
+// productSchema
+
+
+
+
 
 export default User
