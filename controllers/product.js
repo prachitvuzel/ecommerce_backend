@@ -13,7 +13,7 @@ async function handleProductAdd(req, res) {
     brand,
     category,
     price,
-    profileImageURL: `/productImages/${filename}`,
+    productImageURL: `/productImages/${filename}`,
     createdBy: req.user._id,
   });
 
@@ -46,4 +46,10 @@ async function handleProductUpdate(req, res) {
   return res.json({ msg: "product successfully updated" });
 }
 
-export default { handleProductAdd, handleProductUpdate };
+async function handleProductDelete(req, res) {
+  await Product.findByIdAndDelete(req.params.id);
+
+  return res.json({ msg: "product successfully deleted" });
+}
+
+export default { handleProductAdd, handleProductUpdate, handleProductDelete };

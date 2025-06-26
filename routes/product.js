@@ -44,4 +44,10 @@ router.patch(
   productControllers.handleProductUpdate
 );
 
+router.delete(
+  "/deleteproduct/:id",
+  middleware.authenticateAdminAccess,
+  productControllers.handleProductDelete
+);
+
 export default router;
