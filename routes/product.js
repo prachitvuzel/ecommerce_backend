@@ -50,4 +50,8 @@ router.delete(
   productControllers.handleProductDelete
 );
 
+
+router.get("/getProduct/category/:category", productControllers.productFiltering)
+router.get("/getProduct/brand/:brand", productControllers.productFiltering)
+
 export default router;

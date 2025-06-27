@@ -52,4 +52,27 @@ async function handleProductDelete(req, res) {
   return res.json({ msg: "product successfully deleted" });
 }
 
-export default { handleProductAdd, handleProductUpdate, handleProductDelete };
+async function productFiltering(req, res) {
+    let ProductFilters = null
+    if (req.params.category) {
+        ProductFilters = await Product.find({ category: req.params.category })
+    }
+    else if(req.params.brand){
+        ProductFilters = await Product.find({ brand: req.params.brand })
+    }
+    else {
+        return res.json({msg:"InvalidfilterOptions"})
+    }
+    let productArray = []
+    ProductFilters.map((product) => {
+        let products = {}
+        products.productName = product.ProductName
+        products.price = product.price
+        products.category = product.category
+        products.brand = product.brand
+        productArray.push(products)
+    })
+    return res.json(productArray)
+}
+
+export default { handleProductAdd, handleProductUpdate, handleProductDelete, productFiltering };
