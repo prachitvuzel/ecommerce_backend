@@ -3,6 +3,7 @@ import mongoose from "mongoose";
 import dotenv from "dotenv";
 import userRouter from "./routes/user.js";
 import productRouter from "./routes/product.js";
+import cartRouter from "./routes/cart.js"
 import cookieParser from "cookie-parser";
 dotenv.config();
 
@@ -20,6 +21,7 @@ app.use(cookieParser());
 
 app.use("/user", userRouter);
 app.use("/products", productRouter);
+app.use("/cart",cartRouter)
 
 app.get("/", (req, res) => {
   return res.end("hello");

@@ -23,6 +23,11 @@ const ProductSchema = new mongoose.Schema(
     category: {
       type: String,
       required: true,
+        },
+    stockQuantity: {
+        type: Number,
+        required:true,
+        default: 0
     },
     createdBy: {
       type: mongoose.Schema.Types.ObjectId,

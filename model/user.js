@@ -27,7 +27,16 @@ const userSchema = new mongoose.Schema(
       type: String,
       enum: ["USER", "ADMIN"],
       default: "USER",
-    },
+        },
+    userCart: {
+            type: mongoose.Schema.Types.ObjectId,
+            ref:"cart"
+        },
+    orderId: {
+            type: mongoose.Schema.Types.ObjectId,
+            ref:"order"
+    }
+    
   },
   { timestamps: true }
 );

@@ -32,21 +32,21 @@ router.get("/:id", async (req, res) => {
 
 router.post(
   "/addtoinventory",
-  middleware.authenticateAdminAccess,
+  middleware.baseAuthenticate("ADMIN"),
   upload.single("productImage"),
   productControllers.handleProductAdd
 );
 
 router.patch(
   "/updateproduct/:id",
-  middleware.authenticateAdminAccess,
+  middleware.baseAuthenticate("ADMIN"),
   upload.single("productImage"),
   productControllers.handleProductUpdate
 );
 
 router.delete(
   "/deleteproduct/:id",
-  middleware.authenticateAdminAccess,
+  middleware.baseAuthenticate("ADMIN"),
   productControllers.handleProductDelete
 );
 
