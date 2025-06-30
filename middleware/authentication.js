@@ -10,6 +10,7 @@ function baseAuthenticate(role) {
     try {
       const payload = authServices.verifyToken(token);
       const user = await User.findById(payload._id);
+      console.log("payload",payload)
       if (user.role == "ADMIN" || user.role == "USER") {
         req.user = payload;
         next();

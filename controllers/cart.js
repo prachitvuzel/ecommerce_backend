@@ -48,13 +48,16 @@ async function DeleteItemsFromCart(req, res) {
     const userCart = await CartModel.Cart.findById(user.userCart);
 
     let productList = userCart.productList;
-    
-    let newProductList =  productList.filter((product) => (product.ProductID.toString() != productId.toString()))
-    
-    await CartModel.Cart.findByIdAndUpdate(userCart._id, {productList: newProductList });
+
+    let newProductList = productList.filter(
+      (product) => product.ProductID.toString() != productId.toString()
+    );
+
+    await CartModel.Cart.findByIdAndUpdate(userCart._id, {
+      productList: newProductList,
+    });
     return res.json({ msg: "product Deleted from Cart" });
   } catch (error) {
-    console.log(error);
     return res.json({ msg: "Some error occured" });
   }
 }
