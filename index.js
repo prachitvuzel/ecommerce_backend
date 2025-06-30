@@ -10,6 +10,7 @@ import CartModel from "./model/cart.js";
 import Order from "./model/orders.js";
 import User from "./model/user.js";
 import middleware from "./middleware/authentication.js";
+import adminRouter from "./routes/admin.js"
 
 dotenv.config();
 
@@ -28,6 +29,7 @@ app.use("/user", userRouter);
 app.use("/products", productRouter);
 app.use("/cart", cartRouter);
 app.use("/order", orderRouter);
+app.use("/admin",adminRouter)
 app.use("/success", middleware.baseAuthenticate("USER"), async (req, res) => {
   const user = await User.findById(req.user._id);
 
@@ -46,9 +48,6 @@ app.use("/success", middleware.baseAuthenticate("USER"), async (req, res) => {
   return res.send("Payment done successfully");
 });
 
-app.get("/", (req, res) => {
-  return res.end("hello");
-});
 
 app.listen(port, () => {
   console.log(`Server started at port: ${port}`);

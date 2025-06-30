@@ -52,17 +52,6 @@ async function paymentController(req, res) {
             mode: "payment",
         });
 
-      
-      //Creates order as status pending
-        // await Order.create({
-        //     OrderBy: req.user._id,
-        //     status: "pending",
-        //     productList: cart.productList
-         
-        // })
-
-        // //delete cart after order
-        // await CartModel.Cart.findByIdAndDelete(req.params.cartid)
     
     
     return res.redirect(session.url);

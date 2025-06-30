@@ -6,7 +6,7 @@ import dotenv from "dotenv";
 dotenv.config();
 
 async function handleProductAdd(req, res) {
-  const { ProductName, brand, category, price } = req.body;
+  const { ProductName, brand, category, price, stockQuantity } = req.body;
   const filename = req.file.filename;
   await Product.create({
     ProductName,
@@ -15,6 +15,7 @@ async function handleProductAdd(req, res) {
     price,
     productImageURL: `/productImages/${filename}`,
     createdBy: req.user._id,
+    stockQuantity
   });
 
   return res.json({ msg: "Product successfully added" });
@@ -29,7 +30,6 @@ async function handleProductUpdate(req, res) {
   const product_desc = ["ProductName", "category", "brand", "price"];
 
   for (let entry in body) {
-    // console.log(product_desc.includes(entry))
     if (!product_desc.includes(entry)) {
       return res.json({ msg: "Invalid product description" });
     }
